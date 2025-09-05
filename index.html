@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Truck & Trailer Melipilla - Inicio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="home-page">
     <header class="primera">
         <div id="logo">
             <img src="img/logo3.png" alt="logo">
@@ -16,14 +16,16 @@
 
         <nav class="opciones">
             <a href="Inicio">Inicio</a>
-            <a href="Catálogo">Catálogo</a>
+            <a href="CatÃ¡logo">Catálogo</a>
             <a href="Carrito">Carrito</a>
             <a href="Pedido">Pedido</a>
             <a href="Contactanos">Contactanos</a>
-
         </nav>
-        <a href="iniciar_sesion.html" class="boton-inicio">Iniciar Sesion</a>
-        <a href="registrarse.html" class="boton-registro">Registrarse</a>
+        
+        <div class="botones-auth">
+            <a href="iniciar_sesion.html" class="boton-inicio">Iniciar Sesion</a>
+            <a href="registrarse.html" class="boton-registro">Registrarse</a>
+        </div>
     </header>
 
     <section class="segunda">
@@ -85,11 +87,14 @@
                     <p class="precio">$200.000</p>
                     <button>Añadir al Carrito</button>
                 </div>
+            </div>
+            <button id="vercatalogo">Ver catálogo</button>
         </div>
-        <button id="vercatalogo">Ver catálogo</button>
     </section>
+    
     <footer class="footer">
         <p>&copy; 2025 Truck & Trailer Melipilla. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>
