@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truck & Trailer Melipilla - Inicio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalogo.css">
 </head>
 
 <body class="home-page">
@@ -88,10 +89,362 @@
                     <button>Añadir al Carrito</button>
                 </div>
             </div>
-            <button id="vercatalogo">Ver catálogo</button>
+            <body>
+    <div class="container">
+        <button id="vercatalogo">Ver catálogo</button>
+        
+        <button class="cerrar-catalogo" id="cerrarcatalogo">×</button>
+        
+        <div class="catalogo" id="catalogo">
+            <div class="catalogo-header">
+                <h1 class="catalogo-title">Catálogo de Productos</h1>
+                <p class="catalogo-subtitle">Explora nuestros productos organizados por categoría</p>
+            </div>
+            
+            <button class="expandir-todas" id="expandirTodas">Expandir todas las categorías</button>
+            
+            <div id="categorias">
+                <div class="categoria" data-categoria="electronicos">
+                    <div class="categoria-header">
+                        <div>
+                            <span class="categoria-nombre">Motor</span>
+                            <span class="contador-productos">5 productos</span>
+                        </div>
+                        <span class="categoria-icono">▼</span>
+                    </div>
+                    <div class="productos-lista">
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Inyector Common Rail</div>
+                                <div class="producto-descripcion">De alta precisión para motores diesel. Mejora el rendimiento y reduce el consumo de combustible. Compatible con varias marcas.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$220.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Bomba de Inyección</div>
+                                <div class="producto-descripcion">Componente crucial para el sistema de alimentación de combustible. Garantiza la presión correcta para una óptima combustión.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$450.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Correa de Distribución</div>
+                                <div class="producto-descripcion">Mantiene la sincronización entre el cigüeñal y los árboles de levas. Kit incluye rodillos y tensores.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$85.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Turbocharger</div>
+                                <div class="producto-descripcion">Recupera energía de los gases de escape para aumentar la potencia del motor significativamente.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$780.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Sensor MAF</div>
+                                <div class="producto-descripcion">Mide el flujo de aire que entra al motor para una mezcla aire-combustible óptima.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$65.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="categoria" data-categoria="audio">
+                    <div class="categoria-header">
+                        <div>
+                            <span class="categoria-nombre">Sistema de Frenos</span>
+                            <span class="contador-productos">5 productos</span>
+                        </div>
+                        <span class="categoria-icono">▼</span>
+                    </div>
+                    <div class="productos-lista">
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Pastillas de Freno</div>
+                                <div class="producto-descripcion">Fabricadas con material de alta resistencia al calor y desgaste, ideales para cargas pesadas.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$45.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Discos de Freno</div>
+                                <div class="producto-descripción">Diseñados para disipar el calor eficientemente, proporcionando una frenada estable y segura.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$120.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Caliper de Freno</div>
+                                <div class="producto-descripcion">Aloja las pastillas de freno y aplica la presión necesaria para detener el vehículo.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$180.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Tambor de Freno</div>
+                                <div class="producto-descripcion">Para ejes traseros en sistemas de freno de tambor. Robustos y duraderos.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$95.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Líquido de Frenos DOT4</div>
+                                <div class="producto-descripcion">Alto punto de ebullición, ideal para sistemas de frenos que operan bajo altas exigencias.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$15.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wearables -->
+                <div class="categoria" data-categoria="wearables">
+                    <div class="categoria-header">
+                        <div>
+                            <span class="categoria-nombre">Transmisión</span>
+                            <span class="contador-productos">4 productos</span>
+                        </div>
+                        <span class="categoria-icono">▼</span>
+                    </div>
+                    <div class="productos-lista">
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Kit de Embrague</div>
+                                <div class="producto-descripcion">Incluye disco, plato de presión y collarín de empuje. Para transmisiones manuales.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$180.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Junta Homocinética</div>
+                                <div class="producto-descripcion">Permite la transmisión de movimiento en ángulo a las ruedas en vehículos de tracción delantera.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$75.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Aceite de Caja de Cambios</div>
+                                <div class="producto-descripcion">Lubricante especializado que protege los engranajes y sincronizadores de la transmisión.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$28.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Sensor de Velocidad</div>
+                                <div class="producto-descripcion">Proporciona información a la ECU y al tablero para la velocidad del vehículo.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$42.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="categoria" data-categoria="fotografia">
+                    <div class="categoria-header">
+                        <div>
+                            <span class="categoria-nombre">Sistema Eléctrico</span>
+                            <span class="contador-productos">3 productos</span>
+                        </div>
+                        <span class="categoria-icono">▼</span>
+                    </div>
+                    <div class="productos-lista">
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Alternador 24V</div>
+                                <div class="producto-descripcion">Genera la energía eléctrica necesaria para cargar la batería y alimentar los sistemas del camión.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$120.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Motor de Arranque</div>
+                                <div class="producto-descripcion">Potente motor eléctrico que hace girar el motor para ponerlo en marcha.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$150.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Batería 200Ah</div>
+                                <div class="producto-descripcion">Alta capacidad de arranque en frío (CCA) para motores diesel de gran cilindrada.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$180.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="categoria" data-categoria="fotografia">
+                    <div class="categoria-header">
+                        <div>
+                            <span class="categoria-nombre">Aceites y Lubricantes</span>
+                            <span class="contador-productos">2 productos</span>
+                        </div>
+                        <span class="categoria-icono">▼</span>
+                    </div>
+                    <div class="productos-lista">
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Aceite Motor 15W40 20L</div>
+                                <div class="producto-descripcion">Aceite semisintético para motores diesel. Protección contra el desgaste y la oxidación.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$125.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="producto-item">
+                            <div class="producto-info">
+                                <div class="producto-nombre">Grasa Litio EP2</div>
+                                <div class="producto-descripcion">Lubricante de uso múltiple para chasis, rodamientos y otros componentes que requieren lubricación.</div>
+                            </div>
+                            <div class="producto-acciones">
+                                <span class="producto-precio">$12.000</span>
+                                <button class="producto-btn">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnVerCatalogo = document.getElementById('vercatalogo');
+        const btnCerrarCatalogo = document.getElementById('cerrarcatalogo');
+        const btnExpandirTodas = document.getElementById('expandirTodas');
+        const catalogo = document.getElementById('catalogo');
+        const categorias = document.querySelectorAll('.categoria');
+        let catalogoVisible = false;
+        let todasExpandidas = false;
+
+        // Función para mostrar/ocultar catálogo
+        btnVerCatalogo.addEventListener('click', () => {
+            if (catalogoVisible) {
+                ocultarCatalogo();
+            } else {
+                mostrarCatalogo();
+            }
+        });
+
+        function mostrarCatalogo() {
+            catalogo.classList.add('mostrar');
+            btnCerrarCatalogo.classList.add('mostrar');
+            catalogoVisible = true;
+            btnVerCatalogo.textContent = 'Ocultar catálogo';
+            
+            setTimeout(() => {
+                catalogo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        function ocultarCatalogo() {
+            catalogo.classList.remove('mostrar');
+            btnCerrarCatalogo.classList.remove('mostrar');
+            catalogoVisible = false;
+            btnVerCatalogo.textContent = 'Ver catálogo';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Cerrar catálogo
+        btnCerrarCatalogo.addEventListener('click', ocultarCatalogo);
+
+        // Expandir/contraer categorías individuales
+        categorias.forEach(categoria => {
+            const header = categoria.querySelector('.categoria-header');
+            header.addEventListener('click', () => {
+                categoria.classList.toggle('expandida');
+            });
+        });
+
+        // Expandir/contraer todas las categorías
+        btnExpandirTodas.addEventListener('click', () => {
+            if (todasExpandidas) {
+                categorias.forEach(categoria => {
+                    categoria.classList.remove('expandida');
+                });
+                btnExpandirTodas.textContent = 'Expandir todas las categorías';
+                todasExpandidas = false;
+            } else {
+                categorias.forEach(categoria => {
+                    categoria.classList.add('expandida');
+                });
+                btnExpandirTodas.textContent = 'Contraer todas las categorías';
+                todasExpandidas = true;
+            }
+        });
+
+        // Funcionalidad para botones de productos
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('producto-btn')) {
+                e.target.textContent = '¡Agregado!';
+                e.target.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+                
+                setTimeout(() => {
+                    e.target.textContent = 'Agregar';
+                    e.target.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }, 2000);
+            }
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && catalogoVisible) {
+                ocultarCatalogo();
+            }
+        });
+    </script>
+</body>
         </div>
     </section>
-    
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">

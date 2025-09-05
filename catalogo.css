@@ -1,0 +1,258 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #vercatalogo {
+            background: linear-gradient(45deg, #5a8756);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        #vercatalogo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #5a8756);
+        }
+
+        .catalogo {
+            display: none;
+            animation: slideDown 0.4s ease-out;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .catalogo.mostrar {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .catalogo-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .catalogo-title {
+            color: #333;
+            font-size: 2.2em;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .catalogo-subtitle {
+            color: #666;
+            font-size: 1em;
+        }
+
+        .categoria {
+            margin-bottom: 35px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .categoria-header {
+            background: linear-gradient(135deg, #000000);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .categoria-header:hover {
+            background: linear-gradient(135deg, #00bd65);
+        }
+
+        .categoria-nombre {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .categoria-icono {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .categoria.expandida .categoria-icono {
+            transform: rotate(180deg);
+        }
+
+        .productos-lista {
+            background: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .categoria.expandida .productos-lista {
+            max-height: 1000px;
+            padding: 20px;
+        }
+
+        .producto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .producto-item:last-child {
+            border-bottom: none;
+        }
+
+        .producto-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            margin: 0 -10px;
+            padding: 15px 10px;
+            border-radius: 8px;
+        }
+
+        .producto-info {
+            flex: 1;
+        }
+
+        .producto-nombre {
+            font-weight: bold;
+            color: #5a8756;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .producto-descripcion {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .producto-precio {
+            color: #666;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        .producto-acciones {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .producto-btn {
+            background: linear-gradient(45deg, #00bd65);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .producto-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .cerrar-catalogo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .cerrar-catalogo:hover {
+            background: rgba(0,0,0,0.9);
+            transform: scale(1.1);
+        }
+
+        .cerrar-catalogo.mostrar {
+            display: block;
+        }
+
+        .contador-productos {
+            background: rgba(255,255,255,0.3);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .expandir-todas {
+            background: transparent;
+            color: #00bd65;
+            border: 2px solid #00bd65;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .expandir-todas:hover {
+            background: #00bd65;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .producto-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .producto-acciones {
+                align-self: stretch;
+                justify-content: space-between;
+            }
+
+            .catalogo-title {
+                font-size: 1.8em;
+            }
+        }
