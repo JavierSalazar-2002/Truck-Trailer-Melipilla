@@ -133,7 +133,7 @@
 
 .home-page .contenedor-imagen .texto {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -143,7 +143,7 @@
     padding: 20px;
     border-radius: 10px;
     max-width: 80%;
-    z-index: 2;
+    z-index: 3;
 }
 
 .home-page .contenedor-imagen .titulo {

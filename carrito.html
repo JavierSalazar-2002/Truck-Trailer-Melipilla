@@ -21,6 +21,7 @@
             <a href="catalogo.html">Catálogo</a>
             <a href="carrito.html" class="active">Carrito</a>
             <a href="pedido.html">Pedido</a>
+            <a href="envio.html">Gestion</a>
         </nav>
         
         <div class="botones-auth">
@@ -99,9 +100,23 @@
                     <span id="envio">$5.990</span>
                 </div>
                 
+                <div class="linea-resumen descuento-linea" id="descuento-linea" style="display: none;">
+                    <span>Descuento:</span>
+                    <span id="descuento" style="color: #4caf50;">-$0</span>
+                </div>
+                
                 <div class="linea-total">
                     <span>Total:</span>
                     <span id="total">$617.870</span>
+                </div>
+                
+                <!-- Sección de código de descuento -->
+                <div class="codigo-descuento">
+                    <div class="input-grupo">
+                        <input type="text" id="codigo-input" placeholder="Código de descuento" maxlength="20">
+                        <button id="aplicar-codigo" class="btn-aplicar-codigo">Aplicar</button>
+                    </div>
+                    <div id="mensaje-codigo" class="mensaje-codigo"></div>
                 </div>
                 
                 <button class="checkout-button">Proceder al Pago</button>

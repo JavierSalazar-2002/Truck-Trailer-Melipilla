@@ -1,167 +1,162 @@
-// Función principal para manejar el envío del formulario
-document.getElementById('pedido-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Obtener los valores del formulario
-    const nombreReceptor = document.getElementById('nombre-receptor').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const direccion = document.getElementById('direccion').value.trim();
-    const ciudad = document.getElementById('ciudad').value.trim();
-    const codigoPostal = document.getElementById('codigo-postal').value.trim();
-    const referencias = document.getElementById('referencias').value.trim();
-    const observaciones = document.getElementById('observaciones').value.trim();
-    
-    // Validación básica
-    if (!nombreReceptor || !telefono || !direccion || !ciudad) {
-        mostrarError('Por favor, complete todos los campos obligatorios (*)');
-        return;
+const nombreReceptor = document.getElementById("nombre-receptor");
+const telefono = document.getElementById("telefono");
+const email = document.getElementById("email");
+const direccion = document.getElementById("direccion");
+const ciudad = document.getElementById("ciudad");
+const codigoPostal = document.getElementById("codigo-postal");
+const referencias = document.getElementById("referencias");
+const observaciones = document.getElementById("observaciones");
+const form = document.getElementById('pedido-form');
+
+// Función simple para mostrar error al lado del campo
+function mostrarError(campo, mensaje) {
+    // Quitar error anterior si existe
+    const errorAnterior = campo.parentNode.querySelector('.error-text');
+    if (errorAnterior) {
+        errorAnterior.remove();
     }
     
-    // Validación del teléfono
-    if (!validarTelefono(telefono)) {
-        mostrarError('Por favor, ingrese un número de teléfono válido');
-        return;
+    if (mensaje) {
+        // Agregar clase error al campo
+        campo.classList.add("error");
+        
+        // Crear y mostrar mensaje
+        const errorDiv = document.createElement('small');
+        errorDiv.className = 'error-text';
+        errorDiv.style.cssText = `
+            color: #e74c3c;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 5px;
+            font-weight: 500;
+        `;
+        errorDiv.textContent = mensaje;
+        campo.parentNode.appendChild(errorDiv);
+    } else {
+        // Quitar error
+        campo.classList.remove("error");
+    }
+}
+
+// Función para mostrar mensaje de éxito/error general
+function mostrarMensajeGeneral(texto, tipo) {
+    // Remover mensaje anterior si existe
+    const mensajeAnterior = document.getElementById('mensaje-estado');
+    if (mensajeAnterior) {
+        mensajeAnterior.remove();
     }
     
-    // Validación del email (si se proporciona)
-    if (email && !validarEmail(email)) {
-        mostrarError('Por favor, ingrese un email válido');
-        return;
+    // Crear nuevo mensaje
+    const mensaje = document.createElement('div');
+    mensaje.id = 'mensaje-estado';
+    mensaje.style.cssText = `
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+    `;
+    
+    if (tipo === 'error') {
+        mensaje.style.cssText += `
+            background-color: #fee;
+            color: #c33;
+            border: 2px solid #fcc;
+        `;
+        mensaje.textContent = '❌ ' + texto;
+    } else {
+        mensaje.style.cssText += `
+            background-color: #efe;
+            color: #393;
+            border: 2px solid #cfc;
+        `;
+        mensaje.textContent = '✅ ' + texto;
     }
     
-    // Procesar el pedido
-    procesarPedido({
-        nombreReceptor,
-        telefono,
-        email,
-        direccion,
-        ciudad,
-        codigoPostal,
-        referencias,
-        observaciones
-    });
+    // Insertar mensaje después del botón
+    const boton = document.querySelector('.btn-pedido');
+    boton.parentNode.insertBefore(mensaje, boton.nextSibling);
+}
+
+// Validaciones en tiempo real
+nombreReceptor.addEventListener('keyup', function () {
+    if (nombreReceptor.value.trim() === "") {
+        mostrarError(nombreReceptor, "El nombre del receptor es obligatorio");
+    } else if (nombreReceptor.value.trim().length < 2) {
+        mostrarError(nombreReceptor, "Ingrese un nombre válido");
+    } else {
+        mostrarError(nombreReceptor, null);
+    }
+});
+
+telefono.addEventListener('keyup', function () {
+    if (telefono.value.trim() === "") {
+        mostrarError(telefono, "El teléfono es obligatorio");
+    } else if (!validarTelefono(telefono.value)) {
+        mostrarError(telefono, "Ingrese un teléfono chileno válido");
+    } else {
+        mostrarError(telefono, null);
+    }
+});
+
+email.addEventListener('keyup', function () {
+    // Email es opcional, solo validar si tiene contenido
+    if (email.value.trim() !== "" && !validarEmail(email.value)) {
+        mostrarError(email, "Ingrese un email válido");
+    } else {
+        mostrarError(email, null);
+    }
+});
+
+direccion.addEventListener('keyup', function () {
+    if (direccion.value.trim() === "") {
+        mostrarError(direccion, "La dirección de entrega es obligatoria");
+    } else if (direccion.value.trim().length < 5) {
+        mostrarError(direccion, "Ingrese una dirección más específica");
+    } else {
+        mostrarError(direccion, null);
+    }
+});
+
+ciudad.addEventListener('keyup', function () {
+    if (ciudad.value.trim() === "") {
+        mostrarError(ciudad, "La ciudad es obligatoria");
+    } else {
+        mostrarError(ciudad, null);
+    }
+});
+
+codigoPostal.addEventListener('keyup', function () {
+    // Código postal es opcional, solo validar si tiene contenido
+    if (codigoPostal.value.trim() !== "" && (codigoPostal.value.length < 7 || !/^\d+$/.test(codigoPostal.value))) {
+        mostrarError(codigoPostal, "Ingrese un código postal válido (7 dígitos)");
+    } else {
+        mostrarError(codigoPostal, null);
+    }
 });
 
 // Función para validar teléfono chileno
 function validarTelefono(telefono) {
-    // Acepta formatos: +56912345678, +56 9 12345678, 912345678
-    const regex = /^(\+56\s?)?[9]\d{8}$/;
     const numeroLimpio = telefono.replace(/\s+/g, '').replace('+56', '');
-    return regex.test('+56' + numeroLimpio) || /^[9]\d{8}$/.test(numeroLimpio);
+    return /^[9]\d{8}$/.test(numeroLimpio);
 }
 
 // Función para validar email
 function validarEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-// Función para mostrar errores
-function mostrarError(mensaje) {
-    alert('❌ Error: ' + mensaje);
-}
-
-// Función para procesar el pedido
-function procesarPedido(datos) {
-    const button = document.querySelector('.btn-pedido');
-    const originalText = button.textContent;
-    
-    // Cambiar estado del botón a "procesando"
-    button.textContent = 'PROCESANDO...';
-    button.disabled = true;
-    button.style.background = 'linear-gradient(135deg, #999, #777)';
-    button.style.cursor = 'not-allowed';
-    
-    // Simular procesamiento (en una aplicación real, aquí iría la llamada al servidor)
-    setTimeout(() => {
-        // Mostrar confirmación
-        const mensajeConfirmacion = `
-✅ ¡PEDIDO CONFIRMADO!
-
-📋 DETALLES DEL PEDIDO:
-👤 Receptor: ${datos.nombreReceptor}
-📍 Dirección: ${datos.direccion}, ${datos.ciudad}
-📱 Teléfono: ${datos.telefono}
-${datos.email ? '📧 Email: ' + datos.email : ''}
-${datos.codigoPostal ? '📮 Código Postal: ' + datos.codigoPostal : ''}
-
-${datos.referencias ? '🗺️ Referencias: ' + datos.referencias : ''}
-${datos.observaciones ? '📝 Observaciones: ' + datos.observaciones : ''}
-
-🚚 Nos contactaremos pronto para confirmar la entrega.
-⏰ Tiempo estimado: 24-48 horas hábiles.
-        `.trim();
-        
-        alert(mensajeConfirmacion);
-        
-        // Restaurar botón
-        button.textContent = originalText;
-        button.disabled = false;
-        button.style.background = 'linear-gradient(135deg, #5a8756, #00bd65)';
-        button.style.cursor = 'pointer';
-        
-        // Limpiar formulario
-        limpiarFormulario();
-        
-        // Mostrar mensaje de éxito adicional
-        mostrarMensajeExito();
-        
-    }, 2000);
-}
-
-// Función para limpiar el formulario
-function limpiarFormulario() {
-    document.getElementById('pedido-form').reset();
-    // Mantener Melipilla como ciudad por defecto
-    document.getElementById('ciudad').value = 'Melipilla';
-}
-
-// Función para mostrar mensaje de éxito
-function mostrarMensajeExito() {
-    // Crear elemento de éxito temporal
-    const exitoDiv = document.createElement('div');
-    exitoDiv.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #5a8756, #00bd65);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 1000;
-            font-family: 'Oswald', sans-serif;
-            font-weight: bold;
-            max-width: 300px;
-        ">
-            ✅ Pedido enviado exitosamente
-        </div>
-    `;
-    
-    document.body.appendChild(exitoDiv);
-    
-    // Remover después de 3 segundos
-    setTimeout(() => {
-        exitoDiv.remove();
-    }, 3000);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 // Auto-formato para el teléfono chileno
-document.getElementById('telefono').addEventListener('input', function(e) {
+telefono.addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, ''); // Solo números
     
     if (value.length > 0) {
-        // Si ya tiene el código de país
+        // Si empieza con 56 (código de país)
         if (value.startsWith('56')) {
             if (value.length > 2 && value.charAt(2) === '9') {
-                // Formato: +56 9 XXXXXXXX
                 value = '+56 9 ' + value.substring(3);
-            } else if (value.length > 2) {
-                value = '+56 ' + value.substring(2);
-            } else {
-                value = '+' + value;
             }
         } 
         // Si empieza con 9 (típico celular chileno)
@@ -169,28 +164,31 @@ document.getElementById('telefono').addEventListener('input', function(e) {
             value = '+56 ' + value;
         }
         // Si no tiene código de país, agregarlo
-        else if (!value.startsWith('56')) {
-            if (value.length > 0) {
-                value = '+56 9 ' + value;
-            }
+        else if (value.length > 0) {
+            value = '+56 9 ' + value;
         }
     }
     
     e.target.value = value;
 });
 
-// Función para capitalizar nombres
-document.getElementById('nombre-receptor').addEventListener('input', function(e) {
-    e.target.value = capitalizarNombre(e.target.value);
-});
-
-function capitalizarNombre(nombre) {
-    return nombre.replace(/\w\S*/g, function(txt) {
+// Capitalizar nombres
+nombreReceptor.addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-}
+});
 
-// Validación en tiempo real para campos requeridos
+// Formatear código postal (solo números, máximo 7 dígitos)
+codigoPostal.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 7) {
+        value = value.substring(0, 7);
+    }
+    e.target.value = value;
+});
+
+// Validación visual en tiempo real para campos requeridos
 const camposRequeridos = ['nombre-receptor', 'telefono', 'direccion', 'ciudad'];
 
 camposRequeridos.forEach(campo => {
@@ -212,134 +210,34 @@ camposRequeridos.forEach(campo => {
     });
 });
 
-// Función para formatear código postal
-document.getElementById('codigo-postal').addEventListener('input', function(e) {
-    // Solo números, máximo 7 dígitos para códigos postales chilenos
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 7) {
-        value = value.substring(0, 7);
-    }
-    e.target.value = value;
-});
-
-// Función para contar caracteres en textarea
-function agregarContadorCaracteres(textareaId, limite = 500) {
-    const textarea = document.getElementById(textareaId);
-    const contador = document.createElement('div');
-    contador.style.cssText = `
-        text-align: right;
-        font-size: 0.9rem;
-        color: #666;
-        margin-top: 5px;
-        font-family: 'Roboto', sans-serif;
-    `;
+// Validación al enviar el formulario
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
     
-    function actualizarContador() {
-        const longitud = textarea.value.length;
-        contador.textContent = `${longitud}/${limite} caracteres`;
-        
-        if (longitud > limite * 0.9) {
-            contador.style.color = '#e74c3c';
-        } else if (longitud > limite * 0.7) {
-            contador.style.color = '#f39c12';
-        } else {
-            contador.style.color = '#666';
-        }
-        
-        // Limitar caracteres
-        if (longitud > limite) {
-            textarea.value = textarea.value.substring(0, limite);
-            actualizarContador();
-        }
+    let hayErrores = false;
+    
+    // Verificar si hay errores visuales en los campos
+    if (document.querySelectorAll('.error').length > 0) {
+        hayErrores = true;
     }
     
-    textarea.parentNode.insertBefore(contador, textarea.nextSibling);
-    textarea.addEventListener('input', actualizarContador);
-    actualizarContador(); // Inicializar contador
-}
-
-// Agregar contadores a los textareas
-document.addEventListener('DOMContentLoaded', function() {
-    agregarContadorCaracteres('referencias', 300);
-    agregarContadorCaracteres('observaciones', 500);
-});
-
-// Función para guardar borrador en localStorage (opcional)
-function guardarBorrador() {
-    const formData = {
-        nombreReceptor: document.getElementById('nombre-receptor').value,
-        telefono: document.getElementById('telefono').value,
-        email: document.getElementById('email').value,
-        direccion: document.getElementById('direccion').value,
-        ciudad: document.getElementById('ciudad').value,
-        codigoPostal: document.getElementById('codigo-postal').value,
-        referencias: document.getElementById('referencias').value,
-        observaciones: document.getElementById('observaciones').value,
-        timestamp: new Date().toISOString()
-    };
+    // Verificar campos obligatorios vacíos
+    if (!nombreReceptor.value.trim() || !telefono.value.trim() || 
+        !direccion.value.trim() || !ciudad.value.trim()) {
+        hayErrores = true;
+    }
     
-    localStorage.setItem('pedido_borrador', JSON.stringify(formData));
-}
-
-// Función para cargar borrador
-function cargarBorrador() {
-    const borrador = localStorage.getItem('pedido_borrador');
-    if (borrador) {
-        try {
-            const data = JSON.parse(borrador);
-            // Solo cargar si el borrador es reciente (menos de 24 horas)
-            const tiempoBorrador = new Date(data.timestamp);
-            const ahora = new Date();
-            const diferenciaHoras = (ahora - tiempoBorrador) / (1000 * 60 * 60);
-            
-            if (diferenciaHoras < 24) {
-                if (confirm('Se encontró un borrador guardado. ¿Desea cargarlo?')) {
-                    document.getElementById('nombre-receptor').value = data.nombreReceptor || '';
-                    document.getElementById('telefono').value = data.telefono || '';
-                    document.getElementById('email').value = data.email || '';
-                    document.getElementById('direccion').value = data.direccion || '';
-                    document.getElementById('ciudad').value = data.ciudad || 'Melipilla';
-                    document.getElementById('codigo-postal').value = data.codigoPostal || '';
-                    document.getElementById('referencias').value = data.referencias || '';
-                    document.getElementById('observaciones').value = data.observaciones || '';
-                }
-            } else {
-                // Borrar borrador antiguo
-                localStorage.removeItem('pedido_borrador');
-            }
-        } catch (error) {
-            console.error('Error al cargar borrador:', error);
-            localStorage.removeItem('pedido_borrador');
-        }
+    if (hayErrores) {
+        mostrarMensajeGeneral("Por favor, rellene los campos necesarios (*)", "error");
+        return;
     }
-}
-
-// Guardar borrador cada 30 segundos si hay cambios
-let formularioModificado = false;
-document.getElementById('pedido-form').addEventListener('input', function() {
-    formularioModificado = true;
+    
+    // Si no hay errores, procesar pedido
+    procesarPedido();
 });
 
-setInterval(function() {
-    if (formularioModificado) {
-        guardarBorrador();
-        formularioModificado = false;
-    }
-}, 30000);
-
-// Cargar borrador al iniciar la página
-document.addEventListener('DOMContentLoaded', function() {
-    cargarBorrador();
-});
-
-// Limpiar borrador cuando el pedido se envía exitosamente
-function limpiarBorrador() {
-    localStorage.removeItem('pedido_borrador');
-}
-
-// Modificar la función procesarPedido para limpiar borrador
-const procesarPedidoOriginal = procesarPedido;
-procesarPedido = function(datos) {
+// Función para procesar el pedido
+function procesarPedido() {
     const button = document.querySelector('.btn-pedido');
     const originalText = button.textContent;
     
@@ -351,25 +249,8 @@ procesarPedido = function(datos) {
     
     // Simular procesamiento
     setTimeout(() => {
-        // Mostrar confirmación
-        const mensajeConfirmacion = `
-✅ ¡PEDIDO CONFIRMADO!
-
-📋 DETALLES DEL PEDIDO:
-👤 Receptor: ${datos.nombreReceptor}
-📍 Dirección: ${datos.direccion}, ${datos.ciudad}
-📱 Teléfono: ${datos.telefono}
-${datos.email ? '📧 Email: ' + datos.email : ''}
-${datos.codigoPostal ? '📮 Código Postal: ' + datos.codigoPostal : ''}
-
-${datos.referencias ? '🗺️ Referencias: ' + datos.referencias : ''}
-${datos.observaciones ? '📝 Observaciones: ' + datos.observaciones : ''}
-
-🚚 Nos contactaremos pronto para confirmar la entrega.
-⏰ Tiempo estimado: 24-48 horas hábiles.
-        `.trim();
-        
-        alert(mensajeConfirmacion);
+        // Mostrar mensaje de éxito
+        mostrarMensajeGeneral('Pedido aceptado', 'exito');
         
         // Restaurar botón
         button.textContent = originalText;
@@ -377,32 +258,21 @@ ${datos.observaciones ? '📝 Observaciones: ' + datos.observaciones : ''}
         button.style.background = 'linear-gradient(135deg, #5a8756, #00bd65)';
         button.style.cursor = 'pointer';
         
-        // Limpiar formulario y borrador
-        limpiarFormulario();
-        limpiarBorrador();
+        // Limpiar formulario y errores
+        form.reset();
+        // Mantener Melipilla como ciudad por defecto
+        ciudad.value = 'Melipilla';
         
-        // Mostrar mensaje de éxito adicional
-        mostrarMensajeExito();
+        // Limpiar todos los errores visuales
+        document.querySelectorAll('.error-text').forEach(error => error.remove());
+        document.querySelectorAll('.error').forEach(campo => campo.classList.remove('error'));
+        
+        // Restaurar estilos de campos
+        camposRequeridos.forEach(campo => {
+            const elemento = document.getElementById(campo);
+            elemento.style.borderColor = '#e0e0e0';
+            elemento.style.backgroundColor = '#f9f9f9';
+        });
         
     }, 2000);
-};
-
-// Prevenir pérdida de datos al salir de la página
-window.addEventListener('beforeunload', function(e) {
-    const formData = new FormData(document.getElementById('pedido-form'));
-    let tieneContenido = false;
-    
-    for (let [key, value] of formData.entries()) {
-        if (value.trim() !== '' && key !== 'ciudad') { // Ciudad siempre tiene "Melipilla"
-            tieneContenido = true;
-            break;
-        }
-    }
-    
-    if (tieneContenido) {
-        guardarBorrador();
-        const mensaje = 'Hay cambios sin guardar. ¿Está seguro de que desea salir?';
-        e.returnValue = mensaje;
-        return mensaje;
-    }
-});
+}

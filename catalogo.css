@@ -438,12 +438,12 @@ nav.opciones {
 }
 
 /* Footer */
+/* Footer - REEMPLAZAR la sección footer existente con esta */
 .footer {
     width: 100%;
     background-color: #000000;
     padding: 40px 2rem 20px;
     color: white;
-    border-top: 60px solid black;  /* <-- AGREGAR ESTA LÍNEA */
 }
 
 .footer-content {
@@ -453,7 +453,6 @@ nav.opciones {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-bottom: 30px;
-    
 }
 
 .footer-section h3 {
@@ -462,9 +461,11 @@ nav.opciones {
     color: #5a8756;
     margin-bottom: 20px;
     font-weight: bold;
-    
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Enlaces sociales */
 .social-links {
     display: flex;
     flex-direction: column;
@@ -488,21 +489,43 @@ nav.opciones {
 .social-link:hover {
     background: rgba(90, 135, 86, 0.2);
     border-color: #5a8756;
+    transform: translateY(-2px);
     color: #5a8756;
 }
 
-.horarios p, .sucursal p {
+.social-link svg {
+    flex-shrink: 0;
+}
+
+/* Horarios */
+.horarios p {
     margin-bottom: 15px;
     color: #e0e0e0;
     font-size: 0.95rem;
     line-height: 1.5;
+    padding: 8px 0;
 }
 
-.horarios strong, .sucursal strong {
+.horarios strong {
     color: #5a8756;
     font-weight: 600;
 }
 
+/* Sucursal */
+.sucursal p {
+    margin-bottom: 15px;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 8px 0;
+}
+
+.sucursal strong {
+    color: #5a8756;
+    font-weight: 600;
+}
+
+/* Footer bottom */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 20px;
@@ -512,6 +535,34 @@ nav.opciones {
 .footer-bottom p {
     color: #999;
     font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Media queries para el footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer {
+        padding: 30px 1rem 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .social-link {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .horarios p, .sucursal p {
+        font-size: 0.9rem;
+    }
 }
 /* Estilos para el buscador - AGREGAR AL FINAL DEL CSS */
 
