@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truck & Trailer Melipilla - Carrito</title>
     <link rel="stylesheet" href="carrito.css">
+    <!-- Corregido: se cambió el link por script -->
+    <script src="carrito.js" defer></script>
 </head>
 
-<body class="carrito-page">
+<body>
     <header class="primera">
         <div id="logo">
             <img src="img/logo3.png" alt="logo">
@@ -17,9 +19,8 @@
         <nav class="opciones">
             <a href="index.html">Inicio</a>
             <a href="catalogo.html">Catálogo</a>
-            <a href="Carrito">Carrito</a>
-            <a href="Pedido">Pedido</a>
-            <a href="Contactanos">Contactanos</a>
+            <a href="carrito.html" class="active">Carrito</a>
+            <a href="pedido.html">Pedido</a>
         </nav>
         
         <div class="botones-auth">
@@ -28,63 +29,86 @@
         </div>
     </header>
 
-    <main class="carrito-main">
-        <div class="carrito-container">
-            <h2>Mi Carrito de Compras</h2>
-            <!-- El contenido del carrito se añadirá dinámicamente -->
-        </div>
+    <section class="carrito-simple">
+        <h1 class="carrito-titulo">Mi Carrito de Compras</h1>
         
-        <div class="Total">
-            <!-- Resumen del pedido -->
+        <div class="carrito-grid">
+            <div class="carrito-items">
+                <div class="carrito-item" data-precio="25990">
+                    <div class="item-imagen">
+                        <img src="img/aceite2.png" alt="Aceite Motor">
+                    </div>
+                    <div class="item-info">
+                        <h3>Aceite Motor 15W-40</h3>
+                        <p>Aceite mineral para motores diésel pesados</p>
+                    </div>
+                    <div class="item-precio">$25.990</div>
+                    <div class="item-cantidad">
+                        <button class="btn-cantidad">-</button>
+                        <span class="cantidad-numero">2</span>
+                        <button class="btn-cantidad">+</button>
+                    </div>
+                    <button class="btn-eliminar">×</button>
+                </div>
+                
+                <div class="carrito-item" data-precio="89900">
+                    <div class="item-imagen">
+                        <img src="img/pastilla2.png" alt="Pastillas de Freno">
+                    </div>
+                    <div class="item-info">
+                        <h3>Pastillas de Freno Volvo</h3>
+                        <p>Pastillas de freno cerámicas para camiones Volvo</p>
+                    </div>
+                    <div class="item-precio">$89.900</div>
+                    <div class="item-cantidad">
+                        <button class="btn-cantidad">-</button>
+                        <span class="cantidad-numero">1</span>
+                        <button class="btn-cantidad">+</button>
+                    </div>
+                    <button class="btn-eliminar">×</button>
+                </div>
+                
+                <div class="carrito-item" data-precio="245000">
+                    <div class="item-imagen">
+                        <img src="img/neumatico2.png" alt="Llanta">
+                    </div>
+                    <div class="item-info">
+                        <h3>Llanta 295/80R22.5</h3>
+                        <p>Llanta radial para camiones y trailers</p>
+                    </div>
+                    <div class="item-precio">$245.000</div>
+                    <div class="item-cantidad">
+                        <button class="btn-cantidad">-</button>
+                        <span class="cantidad-numero">2</span>
+                        <button class="btn-cantidad">+</button>
+                    </div>
+                    <button class="btn-eliminar">×</button>
+                </div>
+            </div>
+            
             <div class="resumen-pedido">
                 <h2>Resumen del Pedido</h2>
+                
                 <div class="linea-resumen">
                     <span>Subtotal:</span>
-                    <span id="subtotal-amount">$0</span>
+                    <span id="subtotal">$611.880</span>
                 </div>
-                <div class="linea-resumen descuento-linea" id="discount-line" style="display: none;">
-                    <span>Descuento:</span>
-                    <span id="discount-amount">-$0</span>
-                </div>
+                
                 <div class="linea-resumen">
                     <span>Envío:</span>
-                    <span id="shipping-amount">$5,990</span>
+                    <span id="envio">$5.990</span>
                 </div>
+                
                 <div class="linea-total">
                     <span>Total:</span>
-                    <span id="total-amount">$0</span>
+                    <span id="total">$617.870</span>
                 </div>
-            </div>
-
-            <!-- Sección de código de descuento -->
-            <div class="codigo-descuento">
-                <h3>Código de Descuento</h3>
-                <p class="descuento-info">¿Tienes un código promocional? ¡Aplícalo aquí!</p>
-                <div class="input-group">
-                    <input 
-                        type="text" 
-                        id="discount-code-input" 
-                        placeholder="Ingresa tu código"
-                        maxlength="20"
-                    >
-                    <button id="apply-discount-btn" onclick="aplicarDescuento()">
-                        Aplicar
-                    </button>
-                </div>
-                <div id="discount-message"></div>
                 
-                <!-- Códigos de ejemplo para prueba -->
-                <div class="codigos-ejemplo">
-                    <small><strong>Códigos disponibles:</strong><br>
-                    BIENVENIDO10 • TRUCK15 • ENVIOGRATIS</small>
-                </div>
+                <button class="checkout-button">Proceder al Pago</button>
             </div>
-
-            <button class="checkout-button" id="checkout-btn">Proceder al Pago</button>
         </div>
-    </main>
-
-    <footer class="footer">
+    </section>
+<footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Síguenos</h3>
@@ -122,13 +146,10 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2025 Truck & Trailer Melipilla. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <script src="carrito.js"></script>
 </body>
 
 </html>

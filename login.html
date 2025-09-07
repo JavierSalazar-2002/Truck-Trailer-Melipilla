@@ -27,11 +27,13 @@
             <div class="login-form-group">
                 <label for="email">Email *</label>
                 <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                <small class="error-text" id="email-error"></small>
             </div>
 
             <div class="login-form-group">
                 <label for="password">Contraseña *</label>
                 <input type="password" id="password" name="password" required placeholder="Tu contraseña">
+                <small class="error-text" id="password-error"></small>
             </div>
 
             <div class="login-options">
@@ -55,19 +57,109 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
             
-            if (!email || !password) {
-                alert('Por favor, completa todos los campos obligatorios.');
+            // Resetear mensajes de error
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            document.getElementById('email').classList.remove('error');
+            document.getElementById('password').classList.remove('error');
+            
+            let isValid = true;
+            
+            // Validar campos vacíos
+            if (!email) {
+                emailError.textContent = 'El email es obligatorio';
+                document.getElementById('email').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!password) {
+                passwordError.textContent = 'La contraseña es obligatoria';
+                document.getElementById('password').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Verificar si el usuario existe en localStorage
+            const usuariosRegistrados = JSON.parse(localStorage.getItem('usuariosRegistrados')) || [];
+            const usuario = usuariosRegistrados.find(user => user.email === email);
+            
+            if (!usuario) {
+                emailError.textContent = 'Este email no está registrado';
+                document.getElementById('email').classList.add('error');
                 return;
             }
             
-            // Aquí puedes agregar la lógica de autenticación
-            alert('Funcionalidad de login en desarrollo...');
+            // Verificar contraseña
+            if (usuario.password !== password) {
+                passwordError.textContent = 'Contraseña incorrecta';
+                document.getElementById('password').classList.add('error');
+                return;
+            }
             
-            // Simular redirección exitosa (remover en producción)
-            // window.location.href = 'index.html';
+            // Login exitoso
+            alert('¡Inicio de sesión exitoso! Bienvenido ' + usuario.nombre);
+            
+            // Guardar sesión si "Recordarme" está marcado
+            if (document.getElementById('remember').checked) {
+                localStorage.setItem('usuarioLogueado', JSON.stringify({
+                    email: usuario.email,
+                    nombre: usuario.nombre
+                }));
+            } else {
+                sessionStorage.setItem('usuarioLogueado', JSON.stringify({
+                    email: usuario.email,
+                    nombre: usuario.nombre
+                }));
+            }
+            
+            // Redirigir a la página principal
+            window.location.href = 'index.html';
+        });
+
+        // Validación en tiempo real
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value.trim();
+            const emailError = document.getElementById('email-error');
+            
+            if (!email) {
+                emailError.textContent = 'El email es obligatorio';
+                this.classList.add('error');
+            } else if (!email.includes('@')) {
+                emailError.textContent = 'Debe contener @';
+                this.classList.add('error');
+            } else {
+                emailError.textContent = '';
+                this.classList.remove('error');
+            }
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            const password = this.value;
+            const passwordError = document.getElementById('password-error');
+            
+            if (!password) {
+                passwordError.textContent = 'La contraseña es obligatoria';
+                this.classList.add('error');
+            } else {
+                passwordError.textContent = '';
+                this.classList.remove('error');
+            }
+        });
+
+        // Verificar si hay una sesión activa al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado') || sessionStorage.getItem('usuarioLogueado') || 'null');
+            
+            if (usuarioLogueado) {
+                document.getElementById('email').value = usuarioLogueado.email;
+                document.getElementById('remember').checked = true;
+            }
         });
     </script>
 </body>

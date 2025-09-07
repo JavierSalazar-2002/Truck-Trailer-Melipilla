@@ -379,11 +379,6 @@
     margin: 0;
 }
 
-
-/* === ESTILOS PARA LA PÁGINA DE REGISTRO (REGISTRARSE.HTML) === */
-
-/* === ESTILOS BÁSICOS PARA ERRORES === */
-
 /* Campo con error */
 .error {
     outline: 2px solid red !important;
