@@ -57,6 +57,7 @@
 }
 
 /* Contenedor de botones de autenticación */
+
 .home-page .botones-auth {
     display: flex;
     gap: 15px;
@@ -380,6 +381,23 @@
 
 
 /* === ESTILOS PARA LA PÁGINA DE REGISTRO (REGISTRARSE.HTML) === */
+
+/* === ESTILOS BÁSICOS PARA ERRORES === */
+
+/* Campo con error */
+.error {
+    outline: 2px solid red !important;
+    background-color: #ffe6e6 !important;
+}
+
+/* Mensaje de error simple */
+.error-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
 .registro-body {
     min-height: 100vh;
     background-image: url(img/volvo.png);

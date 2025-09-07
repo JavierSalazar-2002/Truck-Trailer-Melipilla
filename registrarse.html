@@ -43,7 +43,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="telefono">Teléfono *</label>
-                    <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 1234 5678">
+                    <input type="tel" id="telefono" name="telefono" required placeholder="912345678">
                 </div>
                 <div class="form-group">
                     <label for="edad">Edad *</label>
@@ -54,6 +54,11 @@
             <div class="form-group">
                 <label for="empresa">Empresa (Opcional)</label>
                 <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa">
+            </div>
+
+            <div class="form-group">
+                <label for="codigo">Codigo descuento (opcional)</label>
+                <input type="text" id="codigo" name="codigo" placeholder="TTMCODIGO">
             </div>
 
             <div class="form-row">
@@ -89,6 +94,9 @@
                 <a href="login.html">Iniciar Sesión</a>
             </div>
         </form>
+        
     </div>
+    <div id="errores"></div>
+    <script src="registrarse.js"></script>
 </body>
 </html>

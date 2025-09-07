@@ -513,7 +513,187 @@ nav.opciones {
     color: #999;
     font-size: 0.9rem;
 }
+/* Estilos para el buscador - AGREGAR AL FINAL DEL CSS */
 
+/* Contenedor del buscador */
+.buscador-container {
+    background: rgb(0, 0, 0);
+    padding: 30px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 0px solid #e0e0e0;
+}
+
+.buscador-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.buscador-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+}
+
+.buscador-input-container:focus-within {
+    border-color: #5a8756;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(90, 135, 86, 0.1);
+}
+
+.buscador-icon {
+    color: #999;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.buscador-input {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #333;
+    flex: 1;
+    outline: none;
+    padding: 0;
+}
+
+.buscador-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.limpiar-buscador {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.limpiar-buscador:hover {
+    background: #ff5252;
+    transform: scale(1.1);
+}
+
+/* Mostrar botón limpiar cuando hay texto */
+.buscador-input:not([value=""]) + .limpiar-buscador,
+.buscador-input:focus + .limpiar-buscador {
+    display: flex;
+}
+
+/* Mejoras en la paginación para que funcione mejor */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.btn-pag {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #e0e0e0;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-pag:hover:not(:disabled) {
+    background: #5a8756;
+    color: white;
+    border-color: #5a8756;
+    transform: translateY(-2px);
+}
+
+.btn-pag.active {
+    background: #5a8756;
+    color: white;
+    border-color: #5a8756;
+    box-shadow: 0 4px 15px rgba(90, 135, 86, 0.3);
+}
+
+.btn-pag:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.numeros-pag {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0 15px;
+}
+
+/* Notificación personalizada */
+.notificacion-carrito {
+    font-family: "Roboto", sans-serif;
+}
+
+/* Responsive para buscador */
+@media (max-width: 768px) {
+    .buscador-container {
+        padding: 20px 15px;
+    }
+    
+    .buscador-input-container {
+        padding: 10px 16px;
+    }
+    
+    .buscador-input {
+        font-size: 0.95rem;
+    }
+    
+    .buscador-input::placeholder {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .buscador-input::placeholder {
+        content: "Buscar repuestos...";
+    }
+    
+    .paginacion {
+        padding: 20px 15px;
+        gap: 8px;
+    }
+    
+    .btn-pag {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        min-width: 40px;
+    }
+    
+    .numeros-pag {
+        margin: 0 10px;
+        gap: 6px;
+    }
+}
 /* Responsive */
 @media (max-width: 968px) {
     .catalogo-container {

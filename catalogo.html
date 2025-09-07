@@ -32,6 +32,31 @@
             <p>Encuentra los mejores repuestos para tu vehículo de carga</p>
         </div>
 
+        <!-- AGREGAR ESTO DESPUÉS DEL .catalogo-hero y ANTES DEL .catalogo-container -->
+        <div class="buscador-container">
+            <div class="buscador-wrapper">
+                <div class="buscador-input-container">
+                    <svg class="buscador-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="buscador" 
+                        class="buscador-input" 
+                        placeholder="Buscar repuestos (nombre, descripción, categoría)..."
+                        autocomplete="off"
+                    >
+                    <button type="button" class="limpiar-buscador" id="limpiar-buscador" onclick="document.getElementById('buscador').value=''; buscarProductos();">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="catalogo-container">
             <aside class="filtros-sidebar">
                 <div class="filtros-header">
