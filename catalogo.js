@@ -14,7 +14,7 @@ const productos = [
         descripcion: "Pastillas de freno de alta calidad para ejes Meritor",
         precio: 125000,
         categoria: "frenos",
-        imagen: "img/pastillas2.png"
+        imagen: "img/pastilla.png"
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const productos = [
         descripcion: "Bomba de agua para motores Detroit Diesel Serie 60",
         precio: 320000,
         categoria: "motor",
-        imagen: "img/bomba-agua.png"
+        imagen: "img/bombaagua.jpg"
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ const productos = [
         descripcion: "Disco de freno ventilado para ejes delanteros",
         precio: 95000,
         categoria: "frenos",
-        imagen: "img/disco-freno.png"
+        imagen: "img/Disco.jpg"
     },
     {
         id: 8,
@@ -62,7 +62,7 @@ const productos = [
         descripcion: "Filtro de aire de alto flujo, lavable y reutilizable",
         precio: 75000,
         categoria: "filtros",
-        imagen: "img/filtro-aire.png"
+        imagen: "img/filtro.png"
     },
     {
         id: 9,
@@ -70,7 +70,7 @@ const productos = [
         descripcion: "Correa de distribución para motores diésel pesados",
         precio: 85000,
         categoria: "motor",
-        imagen: "img/correa-distribucion.jpg"
+        imagen: "img/correa.jpg"
     },
     {
         id: 10,
@@ -78,7 +78,7 @@ const productos = [
         descripcion: "Sensor de velocidad para sistema ABS en ejes traseros",
         precio: 65000,
         categoria: "electrico",
-        imagen: "img/sensor-abs.jpg"
+        imagen: "img/sensot.png"
     },
     {
         id: 11,
@@ -86,7 +86,7 @@ const productos = [
         descripcion: "Muelle parabólico para suspensión trasera de camiones",
         precio: 220000,
         categoria: "suspension",
-        imagen: "img/muelle-suspension.jpg"
+        imagen: "img/muelle.png"
     },
     {
         id: 12,
@@ -94,7 +94,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     },
     {
         id: 13,
@@ -102,7 +102,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     },
     {
         id: 14,
@@ -110,7 +110,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     },
     {
         id: 15,
@@ -118,7 +118,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     },
     {
         id: 16,
@@ -126,7 +126,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     },
     {
         id: 17,
@@ -134,7 +134,7 @@ const productos = [
         descripcion: "Neumático direccional para ejes delanteros",
         precio: 520000,
         categoria: "neumaticos",
-        imagen: "img/neumatico-michelin.jpg"
+        imagen: "img/michellin.jpg"
     }
 ];
 
